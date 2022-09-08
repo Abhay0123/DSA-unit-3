@@ -1,0 +1,59 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let tc = input[0];
+  let line = 1;
+  for (let i = 0; i < tc; i++) {
+    let [l, k] = input[line++].trim().split(" ").map(Number);
+    let arr = input[line++].trim().split(" ").map(Number);
+    //  console.log(k,arr);
+    ProductOfTwo(k, arr);
+  }
+}
+function ProductOfTwo(k, arr) {
+  var count = 0;
+  var x = "";
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] * arr[j] === k) {
+        count++;
+        x += i + " " + j + " ";
+      }
+    }
+  }
+  if (count === 0) {
+    console.log(-1);
+    return;
+  } else {
+    console.log(count);
+  }
+
+  x = x.trim().split(" ").map(Number);
+  //   console.log(x);
+
+  for (let l = 0; l < x.length; l++) {
+    if (l % 2 === 0) {
+      console.log(x[l] + " " + x[l + 1]);
+    }
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
