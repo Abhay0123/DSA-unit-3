@@ -1,41 +1,21 @@
 function runProgram(input) {
   input = input.trim().split("\n");
-  let tc = +input[0];
   let line = 1;
-  for (let i = 0; i < tc; i++) {
-    let l = +input[line++];
+  let sum = 0;
+  let [r, c] = input[0].trim().split(" ").map(Number);
+  // console.log(r,c)
+  for (let i = 0; i < r; i++) {
     let arr = input[line++].trim().split(" ").map(Number);
-    //console.log(l,arr);
-    let x = solveAFinancialProblem(l, arr);
-    // console.log(x);
-    let ans = "";
+    // console.log(r,arr);
+
     for (let j = 0; j < arr.length; j++) {
-      if (x[j] == -1) {
-        ans += j + 1 + " ";
-      } else {
-        ans += j - x[j] + " ";
+      if (arr[j] % 3 === 0) {
+        sum += arr[j];
       }
     }
-    console.log(ans);
   }
+  console.log(sum);
 }
-function solveAFinancialProblem(l, arr) {
-  let stack = [];
-  let ans = [];
-  for (let i = 0; i < arr.length; i++) {
-    while (stack.length !== 0 && arr[i] >= arr[stack[stack.length - 1]]) {
-      stack.pop();
-    }
-    if (stack.length === 0) {
-      ans.push(-1);
-    } else {
-      ans.push(stack[stack.length - 1]);
-    }
-    stack.push(i);
-  }
-  return ans;
-}
-
 if (process.env.USERNAME === "") {
   runProgram(``);
 } else {
