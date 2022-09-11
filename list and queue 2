@@ -1,44 +1,43 @@
 function runProgram(input) {
-    input=input.trim().split("\n");
-    let tc=+input[0];
-    let line=1;
-    let arr=[];
-    for(let i=0;i<tc;i++){
-    let [o,n]=input[line++].trim().split(" ");
- //   console.log(o,(+n));
-listAndQueue2(o,+n);
+  input = input.trim().split("\n");
+  let tc = +input[0];
+  let line = 1;
+  let arr = [];
+  for (let i = 0; i < tc; i++) {
+    let [o, n] = input[line++].trim().split(" ");
+    //   console.log(o,(+n));
+    listAndQueue2(o, +n);
+  }
+  function listAndQueue2(o, n) {
+    if (o == "Push") {
+      arr.push(+n);
+    } else if (o == "Pop") {
+      if (arr.length === 0) {
+        console.log("Empty");
+      } else {
+        console.log(arr[arr.length - 1]);
+        arr.pop();
+      }
     }
-    function  listAndQueue2(o,n){
-        if(o=='Push'){
-              arr.push(+n);
-             }
-        else if(o=='Pop'){
-               if(arr.length===0){
-                console.log('Empty');
-        }else{
-            console.log(arr[arr.length-1]);
-            arr.pop();
-            }
-        }
-    }
- }
- if (process.env.USERNAME === "") {
-     runProgram(``);
- } else {
-     process.stdin.resume();
-     process.stdin.setEncoding("ascii");
-     let read = "";
-     process.stdin.on("data", function (input) {
-         read += input;
-     });
-     process.stdin.on("end", function () {
-         read = read.replace(/\n$/, "");
-         read = read.replace(/\n$/, "");
-         runProgram(read);
-     });
-     process.on("SIGINT", function () {
-         read = read.replace(/\n$/, "");
-         runProgram(read);
-         process.exit(0);
-     });
- } 
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
