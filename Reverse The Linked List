@@ -1,0 +1,19 @@
+const LinkedListNode = class {
+  constructor(nodeData) {
+    this.data = nodeData;
+    this.next = null;
+  }
+};
+function reverse(head) {
+  let currentNode = head;
+  let prev = null;
+  let after = null;
+  while (currentNode !== null) {
+    after = currentNode.next;
+    currentNode.next = prev;
+    prev = currentNode;
+    currentNode = after;
+  }
+  head = prev;
+  return head;
+}
