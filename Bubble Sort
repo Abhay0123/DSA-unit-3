@@ -1,0 +1,47 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let n = +input[0];
+  let a = input[1].trim().split(" ").map(Number);
+  // console.log(n,a);
+  bubbleSort(n, a);
+}
+function bubbleSort(n, a) {
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n - 1; j++) {
+      if (a[j] > a[j + 1]) {
+        swap(a, j, j + 1);
+        count++;
+      }
+    }
+  } //console.log(a,count)
+  console.log(`Array is sorted in ${count} swaps`);
+  console.log(`First Element: ${a[0]}`);
+  console.log(`Last Element: ${a[a.length - 1]}`);
+}
+function swap(arr, a, b) {
+  var temp = arr[a];
+  arr[a] = arr[b];
+  arr[b] = temp;
+}
+
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
