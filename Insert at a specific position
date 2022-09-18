@@ -1,0 +1,25 @@
+const LinkedListNode = class {
+  constructor(nodeData) {
+    this.data = nodeData;
+    this.next = null;
+  }
+};
+function insertNodeAtPosition(head, data, position) {
+  let curr = head;
+  let i = 0;
+  let node = new LinkedListNode(data);
+  //node contains the given data
+  if (position === 0) {
+    node.next = head;
+    head = node;
+    return head;
+  } else {
+    while (curr !== null && i < position - 1) {
+      curr = curr.next;
+      i++;
+    }
+    node.next = curr.next;
+    curr.next = node;
+  }
+  return head;
+}
