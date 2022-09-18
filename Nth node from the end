@@ -1,0 +1,19 @@
+const LinkedListNode = class {
+  constructor(nodeData) {
+    this.data = nodeData;
+    this.next = null;
+  }
+};
+
+function nth_node(head, n) {
+  let ankush = head;
+  let abhay = head;
+  for (let i = 0; i < n; i++) {
+    ankush = ankush.next;
+  }
+  while (ankush !== null) {
+    ankush = ankush.next;
+    abhay = abhay.next;
+  }
+  return abhay.data;
+}
