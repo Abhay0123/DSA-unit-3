@@ -1,0 +1,59 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let line = 1;
+  let tc = +input[0];
+  for (let i = 0; i < tc; i++) {
+    let l = +input[line++];
+    let arr1 = input[line++].trim().split("");
+    let arr2 = input[line++].trim().split("");
+    // console.log(l,arr1,arr2);
+    mathsTeacher(l, arr1, arr2);
+  }
+}
+function mathsTeacher(l, arr1, arr2) {
+  let obj1 = {};
+  let count1 = 0;
+  let count2 = 0;
+  for (let i = 0; i < arr1.length; i++) {
+    if (obj1[arr1[i]] === undefined) {
+      obj1[arr1[i]] = 1;
+      count1++;
+    } else {
+      obj1[arr1[i]]++;
+    }
+  }
+  let obj2 = {};
+  for (let i = 0; i < arr2.length; i++) {
+    if (obj2[arr2[i]] === undefined) {
+      obj2[arr2[i]] = 1;
+      count2++;
+    } else {
+      obj2[arr2[i]]++;
+    }
+  }
+  if (count1 == count2) {
+    console.log("Equivalent");
+  } else {
+    console.log("Not Equivalent");
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
