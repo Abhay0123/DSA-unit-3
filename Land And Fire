@@ -1,0 +1,56 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let line = 1;
+  let tc = +input[0];
+  for (let i = 0; i < tc; i++) {
+    let l = +input[line++];
+    let arr = input[line++].trim().split(" ").map(Number);
+
+    // console.log(l,arr);
+    landAndFire(l, arr);
+  }
+}
+function landAndFire(l, arr) {
+  let count1 = 0;
+  let count2 = 0;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] == 1) {
+      count1++;
+    } else if (arr[i] !== 1) {
+      break;
+    }
+  }
+  for (let j = 1; j < arr.length; j++) {
+    if (arr[j] == 1) {
+      count2++;
+    } else if (arr[j] !== 1) {
+      break;
+    }
+  }
+  let ans = l - count1 - count2;
+  if (ans < 0) {
+    console.log(0);
+  } else {
+    console.log(ans);
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
