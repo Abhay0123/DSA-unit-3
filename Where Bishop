@@ -1,0 +1,61 @@
+function runProgram(input) {
+    input = input.trim().split("\n")
+    let tc = +input[0]
+    let line = 1;
+    for(let i=0;i<tc;i++){
+        let chess = []
+        for(let i=0;i<8;i++){
+            chess.push(input[line++])
+        }
+        sol(chess)
+    }
+}
+function sol(chess){
+    let check = 0
+    for(let i=0;i<8;i++){
+        let check = 0
+     for(let j=0;j<8;j++){
+       if(chess[i][j] == "#"){
+                check++
+              if(check>=2){
+                 for(let k=i;k<8;k++){
+                  let count = 0
+                  let col = 1
+                  let row = 1
+              for(let h=0;h<8;h++){
+                  if(chess[k][h]=="#"){
+                      count++
+                       col = k+1
+                      row = h+1
+                            }
+                        }
+                        if(count == 1){
+                            console.log(col,row)
+                            return
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+if (process.env.USER === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}

@@ -1,44 +1,29 @@
 const LinkedListNode = class {
-    constructor(nodeData) {
-        this.data = nodeData;
-        this.next = null;
-    }
+  constructor(nodeData) {
+    this.data = nodeData;
+    this.next = null;
+  }
 };
 // Complete the function below
 var sortBinaryList = function (head) {
   let headone = new LinkedListNode(1);
-    let headzero = new LinkedListNode(0);
-    let one = headone, zero = headzero;
-    let temp = head;
-    while(temp != null){
-        if(temp.data == 0){
-            zero.next = temp;
-            zero = zero.next;
-            temp = temp.next;
-            zero.next = null
-        }else{
-            one.next = temp
-            one = one.next;
-            temp = temp.next
-            one.next =null;
-        }
+  let headzero = new LinkedListNode(0);
+  let one = headone,
+    zero = headzero;
+  let temp = head;
+  while (temp != null) {
+    if (temp.data == 0) {
+      zero.next = temp;
+      zero = zero.next;
+      temp = temp.next;
+      zero.next = null;
+    } else {
+      one.next = temp;
+      one = one.next;
+      temp = temp.next;
+      one.next = null;
     }
-    zero.next = headone.next;
-    return headzero.next
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+  zero.next = headone.next;
+  return headzero.next;
 };
-
-
