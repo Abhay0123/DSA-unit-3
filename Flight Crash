@@ -2,7 +2,7 @@ function runProgram(input) {
   input = input.trim().split("\n");
   let tc = +input[0];
   let line = 1;
-   var o = "";
+  var o = "";
   var cw = "";
   var man = "";
   var c = "";
