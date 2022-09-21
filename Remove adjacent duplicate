@@ -1,24 +1,25 @@
 function runProgram(input) {
   input = input.trim().split("\n");
+  let tc = +input[0];
   let line = 1;
-  var newarr = [];
-  var [r, c] = input[0].trim().split(" ").map(Number);
-  for (let i = 0; i < r; i++) {
-    var arr = input[line++].trim().split(" ").map(Number);
-    newarr.push(arr);
-    // console.log(arr.join(' '));
+  for (let i = 0; i < tc; i++) {
+    let l = +input[line++];
+    let str = input[line++];
+    //  console.log(l,str)
+    removeAdjacentDuplicates(l, str);
   }
-  let final_ans = "";
-  for (i = 0; i < c; i++) {
-    let min = Infinity;
-    for (j = 0; j < r; j++) {
-      if (newarr[j][i] < min) {
-        min = newarr[j][i];
+  function removeAdjacentDuplicates(l, str) {
+    let arr = [];
+    for (var i = 0; i < str.length; i++) {
+      while (str.length !== 0 && str[i] == arr[arr.length - 1]) {
+        arr.pop();
+        i++;
       }
+
+      arr.push(str[i]);
     }
-    final_ans += min + " ";
+    console.log(arr.join(""));
   }
-  console.log(final_ans);
 }
 if (process.env.USERNAME === "") {
   runProgram(``);
