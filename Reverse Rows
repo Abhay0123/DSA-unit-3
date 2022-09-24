@@ -1,0 +1,34 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let tc = +input[0];
+  let line = 1;
+  for (let i = 0; i < tc; i++) {
+    let bag = "";
+    let arr = input[line++].trim().split(" ").map(Number);
+    for (let j = arr.length - 1; j >= 0; j--) {
+      bag += arr[j] + " ";
+    }
+    // console.log(arr)
+    console.log(bag);
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
