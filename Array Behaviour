@@ -1,0 +1,51 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let tc = +input[0];
+  let line = 1;
+  for (let i = 0; i < tc; i++) {
+    let l = +input[line++];
+    let arr = input[line++].trim().split(" ").map(Number);
+    //  console.log(arr)
+    ArrayBehaviour(arr);
+  }
+}
+function ArrayBehaviour(arr) {
+  let count = 0;
+  for (let j = 0; j < arr.length; j++) {
+    if (arr[j] % 2 !== 0) {
+      count++;
+      // console.log(count)
+    } else {
+      count = 0;
+      // console.log(count)
+    }
+    if (count == 3) {
+      console.log("Misbehave!");
+      break;
+    }
+  }
+  if (count !== 3) {
+    console.log("Behave!");
+    // break;
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
