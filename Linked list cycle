@@ -1,23 +1,22 @@
-
 const LinkedListNode = class {
-    constructor(nodeData) {
-        this.data = nodeData;
-        this.next = null;
-    }
+  constructor(nodeData) {
+    this.data = nodeData;
+    this.next = null;
+  }
 };
 // Complete the function below
-var hasCycle = function(head) {
-    if(head===null){
-        return false; 
+var hasCycle = function (head) {
+  if (head === null) {
+    return false;
+  }
+  let slow = head;
+  let fast = head;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+    if (fast == slow) {
+      return true;
     }
-    let slow=head;
-    let fast=head;
-    while(fast!==null && fast.next!==null){
-        fast=fast.next.next;
-        slow=slow.next;
-        if(fast==slow){
-            return true;
-        }
-    } return false;
-    };
-
+  }
+  return false;
+};
