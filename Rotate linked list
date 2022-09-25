@@ -1,0 +1,41 @@
+const LinkedListNode = class {
+  constructor(nodeData) {
+    this.data = nodeData;
+    this.next = null;
+  }
+};
+
+var rotateRight = function (head, k) {
+  if (head === null) return head;
+
+  let temp = head;
+  let length = 1;
+  while (temp.next !== null) {
+    // compute the length of SLL.
+    length++;
+    temp = temp.next;
+  }
+
+  // at the end of loop temp will points to the last node
+  if (k > length) {
+    k = k % length;
+  }
+  k = length - k;
+  //now ,k  is < = length...
+
+  if (k === 0 || k == length) return head; // no need to rotate
+
+  let curr = head;
+
+  let count = 1;
+  //curr is going forward by k
+  while (count < k && curr !== null) {
+    curr = curr.next;
+    count++;
+  }
+  if (curr === null) return head;
+  temp.next = head;
+  head = curr.next;
+  curr.next = null;
+  return head;
+};
