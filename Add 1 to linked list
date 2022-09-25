@@ -1,0 +1,43 @@
+
+const LinkedListNode = class {
+    constructor(nodeData) {
+        this.data = nodeData;
+        this.next = null;
+    }
+};
+
+var addOneToLinkedList = function(head) {
+  let curr = head;
+    if (head.next === null)
+    {
+        head.data += 1;
+        return head;
+    }
+    let temp = head;
+    let prev;
+    while (temp.next !== null)
+    {
+        if (temp.data != 9)
+        {
+            curr = temp;
+        }
+        temp = temp.next;
+    }
+    if (temp.data === 9 && curr !== null)
+    {
+        temp = curr;
+        temp.data += 1;
+        temp = temp.next;
+        while (temp !== null)
+        {
+            temp.data = 0;
+            temp = temp.next;
+        }
+    }
+    else
+    {
+        temp.data += 1;
+    }
+    return head;
+};
+

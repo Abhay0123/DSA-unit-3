@@ -1,38 +1,35 @@
 const LinkedListNode = class {
-    constructor(nodeData) {
-        this.data = nodeData;
-        this.next = null;
-    }
+  constructor(nodeData) {
+    this.data = nodeData;
+    this.next = null;
+  }
 };
 // Complete the function below
 var isPalindrome = function (head) {
-     let slow=head;
-     let fast=head;
-     while(fast!==null && fast.next!==null){
-         fast=fast.next.next;
-         slow=slow.next;
-     }
-     //  return slow.data
+  let slow = head;
+  let fast = head;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+  }
+  //  return slow.data
 
-    let curr=slow;
-    let prev=null;
-    let next;
-    while(curr){
-        next=curr.next;
-        curr.next=prev;
-        prev=curr;
-        curr=next;
-    } 
-   fast=head;
-    while(prev!==null){
-        if(fast.data!=prev.data){
-            return false;
-        }
-        fast=fast.next;
-        prev=prev.next;
-        }
-        return true;
-}  ;
-   
-   
-   
+  let curr = slow;
+  let prev = null;
+  let next;
+  while (curr) {
+    next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+  }
+  fast = head;
+  while (prev !== null) {
+    if (fast.data != prev.data) {
+      return false;
+    }
+    fast = fast.next;
+    prev = prev.next;
+  }
+  return true;
+};
