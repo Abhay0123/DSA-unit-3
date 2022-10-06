@@ -1,0 +1,78 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let tc = +input[0];
+  let line = 1;
+  for (let i = 0; i < tc; i++) {
+    let matrix = [];
+    let n = +input[line++];
+    let arr = input[line++].trim().split(" ").map(Number);
+    // console.log(n,arr)
+    spiralsAndDiagonals(n, arr);
+  }
+}
+function spiralsAndDiagonals(n, arr) {
+  let matrix = [];
+  for (let i = 0; i < n; i++) {
+    let arr1 = [];
+    for (let j = 0; j < n; j++) {
+      arr1.push(0);
+    }
+    matrix.push(arr1);
+  }
+  //console.log(matrix)
+  let left = 0;
+  let right = n - 1;
+  let top = 0;
+  let bottom = n - 1;
+  let index = 0;
+  let sum = 0;
+  //index variable point the given arr
+  while (index < n * n) {
+    for (let i = left; i <= right; i++) {
+      matrix[top][i] = arr[index++];
+    }
+    top++;
+    for (let i = top; i <= bottom; i++) {
+      matrix[i][right] = arr[index++];
+    }
+    right--;
+    for (i = right; i >= left; i--) {
+      matrix[bottom][i] = arr[index++];
+    }
+    bottom--;
+    for (let i = bottom; i >= top; i--) {
+      matrix[i][left] = arr[index++];
+    }
+    left++;
+  }
+  //sum of diagonals
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (i === j || i + j == n - 1) {
+        sum += matrix[i][j];
+      }
+    }
+  }
+  console.log(sum);
+}
+
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
