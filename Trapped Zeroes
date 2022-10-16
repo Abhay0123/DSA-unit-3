@@ -1,57 +1,56 @@
 function runProgram(input) {
-    input=input.trim().split('\n');
-    let [row,col]=input[0].trim().split(" ").map(Number);
-   // console.log(row,col);
-    let line=1;
-    var arr=[];
-    for(let k=0;k<row;k++){
-        let array=input[line++].trim().split(" ").map(Number);
-        arr.push(array);
-      }
-      //console.log(arr);
-      let x=trappedZeroes(arr,row,col);
-      console.log(x);
+  input = input.trim().split("\n");
+  let [row, col] = input[0].trim().split(" ").map(Number);
+  // console.log(row,col);
+  let line = 1;
+  var arr = [];
+  for (let k = 0; k < row; k++) {
+    let array = input[line++].trim().split(" ").map(Number);
+    arr.push(array);
   }
- function trappedZeroes(arr,row,col){
-    var count = 0;
-    for (var i = 0;i<row;i++){
-        for (var j = 0;j<col;j++){
-            if (arr[i][j] === 0 && surrounded(arr,i,j) === true){
-                
-                 count++;
-                //console.log(i,j,count)
-            } 
-        }
+  //console.log(arr);
+  let x = trappedZeroes(arr, row, col);
+  console.log(x);
+}
+function trappedZeroes(arr, row, col) {
+  var count = 0;
+  for (var i = 0; i < row; i++) {
+    for (var j = 0; j < col; j++) {
+      if (arr[i][j] === 0 && surrounded(arr, i, j) === true) {
+        count++;
+        //console.log(i,j,count)
+      }
     }
-    return count;
+  }
+  return count;
 }
 
-function surrounded(arr,row,col){
-    if (row - 1 >= 0 && arr[row-1][col] != 1) return false; // check up
-    if (row + 1 < arr.length && arr[row+1][col] != 1) return false; // check down
-    if (col - 1 >= 0 && arr[row][col - 1] != 1) return false; // check left
-    if (col + 1 < arr[0].length && arr[row][col + 1] != 1) return false // check right
-   
-    return true;
+function surrounded(arr, row, col) {
+  if (row - 1 >= 0 && arr[row - 1][col] != 1) return false; // check up
+  if (row + 1 < arr.length && arr[row + 1][col] != 1) return false; // check down
+  if (col - 1 >= 0 && arr[row][col - 1] != 1) return false; // check left
+  if (col + 1 < arr[0].length && arr[row][col + 1] != 1) return false; // check right
+
+  return true;
 }
- 
- if (process.env.USERNAME === "") {
-     runProgram(``);
- } else {
-     process.stdin.resume();
-     process.stdin.setEncoding("ascii");
-     let read = "";
-     process.stdin.on("data", function (input) {
-         read += input;
-     });
-     process.stdin.on("end", function () {
-         read = read.replace(/\n$/, "");
-         read = read.replace(/\n$/, "");
-         runProgram(read);
-     });
-     process.on("SIGINT", function () {
-         read = read.replace(/\n$/, "");
-         runProgram(read);
-         process.exit(0);
-     });
- } 
+
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
