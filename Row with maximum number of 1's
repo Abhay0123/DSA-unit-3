@@ -1,0 +1,53 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let tc = +input[0];
+  let line = 1;
+
+  for (let i = 0; i < tc; i++) {
+    let [r, c] = input[line++].trim().split(" ").map(Number);
+    let matrix = [];
+    for (let j = 0; j < r; j++) {
+      let arr = input[line++].trim().split(" ").map(Number);
+      matrix.push(arr);
+    }
+    RowWithMaxOnes(matrix, r, c);
+    // console.log(matrix,r,c)
+  }
+  function RowWithMaxOnes(matrix, r, c) {
+    let prev_ones = 0;
+    let row = 1;
+    for (let i = 0; i < r; i++) {
+      let curr_ones = 0;
+      for (let j = c - 1; j >= 0; j--) {
+        if (matrix[i][j] === 1) {
+          curr_ones++;
+        }
+      }
+      if (curr_ones > prev_ones) {
+        prev_ones = curr_ones;
+        row = i + 1;
+      }
+    }
+    console.log(row);
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
