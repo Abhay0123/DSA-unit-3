@@ -1,0 +1,60 @@
+function runProgram(input) {
+    input=input.trim().split("\n");
+    let l=+input[0];
+    let str=input[1];
+   // console.log(l,str)
+    substringGame(l,str);
+    }
+    function substringGame(l,str){
+    var even=0;
+    for(let i=0;i<l;i++){
+        let bag='';
+          let count=0;
+        for(let j=i;j<l;j++){
+            bag+=str[j];
+          
+           // console.log(bag);
+            for(let k=0;k<str[j].length;k++){
+                 if(count===2){
+                      even++;
+                      break;
+                  }
+              else if(str[j][k]=='a' || str[j][k]=='e' || str[j][k]=='i' || str[j][k]=='o' || str[j][k]=='u'){
+                  count++;
+                  if(count===2){
+                      even++;
+                      break;
+                  }
+                }else{
+                   count=0;
+                    continue;
+                }
+            }
+        }
+    }console.log(even);
+    
+    
+    
+    
+    
+   }
+if (process.env.USERNAME === "") {
+     runProgram(``);
+ } else {
+     process.stdin.resume();
+     process.stdin.setEncoding("ascii");
+     let read = "";
+     process.stdin.on("data", function (input) {
+         read += input;
+     });
+     process.stdin.on("end", function () {
+         read = read.replace(/\n$/, "");
+         read = read.replace(/\n$/, "");
+         runProgram(read);
+     });
+     process.on("SIGINT", function () {
+         read = read.replace(/\n$/, "");
+         runProgram(read);
+         process.exit(0);
+     });
+ }

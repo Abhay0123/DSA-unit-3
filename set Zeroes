@@ -1,91 +1,88 @@
 function runProgram(input) {
-    input=input.trim().split('\n');
-    let  tc=+input[0];
-    let line=1;
-    for(let i=0;i<tc;i++){
-        let matrix=[];
-        let [r,c]=input[line++].trim().split(" ").map(Number);
-        for(let j=0;j<r;j++){
-        let arr=input[line++].trim().split(" ").map(Number);
-          matrix.push(arr);
-        }
-       // console.log(matrix);
-        setZeroes(r,c,matrix);
+  input = input.trim().split("\n");
+  let tc = +input[0];
+  let line = 1;
+  for (let i = 0; i < tc; i++) {
+    let matrix = [];
+    let [r, c] = input[line++].trim().split(" ").map(Number);
+    for (let j = 0; j < r; j++) {
+      let arr = input[line++].trim().split(" ").map(Number);
+      matrix.push(arr);
     }
- function setZeroes(r,c,matrix){
-    let row=false;
-    let col=false;
-    for(let i=0;i<r;i++){
-        if(matrix[i][0]===0){
-            col=true;
-        }
+    // console.log(matrix);
+    setZeroes(r, c, matrix);
+  }
+  function setZeroes(r, c, matrix) {
+    let row = false;
+    let col = false;
+    for (let i = 0; i < r; i++) {
+      if (matrix[i][0] === 0) {
+        col = true;
+      }
     }
-      for(let j=0;j<c;j++){
-        if(matrix[0][j]===0){
-            row=true;
-        }
+    for (let j = 0; j < c; j++) {
+      if (matrix[0][j] === 0) {
+        row = true;
+      }
     }
-    for(let i=1;i<r;i++){
-        for(let j=1;j<c;j++){
-            if(matrix[i][j]===0){
-                matrix[i][0]=0;
-                matrix[0][j]=0;
-            }
+    for (let i = 1; i < r; i++) {
+      for (let j = 1; j < c; j++) {
+        if (matrix[i][j] === 0) {
+          matrix[i][0] = 0;
+          matrix[0][j] = 0;
         }
+      }
     }
-    for(let i=1;i<r;i++){
-        if(matrix[i][0]===0){
-            for(let j=0;j<c;j++){
-                matrix[i][j]=0
-            }
+    for (let i = 1; i < r; i++) {
+      if (matrix[i][0] === 0) {
+        for (let j = 0; j < c; j++) {
+          matrix[i][j] = 0;
         }
+      }
     }
-      for(let j=1;j<c;j++){
-        if(matrix[0][j]===0){
-            for(let i=0;i<r;i++){
-                matrix[i][j]=0
-            }
+    for (let j = 1; j < c; j++) {
+      if (matrix[0][j] === 0) {
+        for (let i = 0; i < r; i++) {
+          matrix[i][j] = 0;
         }
+      }
     }
-    if(row){
-        for(let j=0;j<c;j++){
-            matrix[0][j]=0;
-        }
+    if (row) {
+      for (let j = 0; j < c; j++) {
+        matrix[0][j] = 0;
+      }
     }
-       if(col){
-        for(let i=0;i<r;i++){
-            matrix[i][0]=0;
-        }
+    if (col) {
+      for (let i = 0; i < r; i++) {
+        matrix[i][0] = 0;
+      }
     }
-    for(let m=0;m<r;m++){
-        let bag='';
-        for(let n=0;n<c;n++){
-            bag+=matrix[m][n]+" ";
-        }
-        console.log(bag);
+    for (let m = 0; m < r; m++) {
+      let bag = "";
+      for (let n = 0; n < c; n++) {
+        bag += matrix[m][n] + " ";
+      }
+      console.log(bag);
     }
- }    
-    
-    
-    
- }
- if (process.env.USERNAME === "") {
-     runProgram(``);
- } else {
-     process.stdin.resume();
-     process.stdin.setEncoding("ascii");
-     let read = "";
-     process.stdin.on("data", function (input) {
-         read += input;
-     });
-     process.stdin.on("end", function () {
-         read = read.replace(/\n$/, "");
-         read = read.replace(/\n$/, "");
-         runProgram(read);
-     });
-     process.on("SIGINT", function () {
-         read = read.replace(/\n$/, "");
-         runProgram(read);
-         process.exit(0);
-     });
- } 
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
