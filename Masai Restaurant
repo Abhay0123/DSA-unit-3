@@ -1,0 +1,43 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let line = 1;
+  var stk = [];
+  let tc = +input[0];
+  for (let i = 0; i < tc; i++) {
+    let [o, p] = input[line++].trim().split(" ").map(Number);
+    // console.log(o,p)
+    masaiRestaurant(o, p);
+  }
+  function masaiRestaurant(o, p) {
+    if (o === 1) {
+      if (stk.length === 0) {
+        console.log("No Food");
+      } else {
+        console.log(stk[stk.length - 1]);
+        stk.pop();
+      }
+    } else if (o === 2) {
+      stk.push(p);
+    }
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}

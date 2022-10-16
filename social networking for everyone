@@ -1,0 +1,32 @@
+function runProgram(input) {
+  let n = +input;
+  if (n < 13) {
+    console.log("1 Kms");
+  } else if (n >= 13 && n < 18) {
+    console.log("5 Kms");
+  } else if (n >= 18 && n < 30) {
+    console.log("10 Kms");
+  } else if (n >= 30) {
+    console.log("You can have friends from anywhere");
+  }
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}

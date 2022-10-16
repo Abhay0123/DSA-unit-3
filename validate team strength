@@ -1,0 +1,43 @@
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let [l, k] = input[0].trim().split(" ").map(Number);
+  let arr = input[1].trim().split(" ").map(Number);
+  //console.log(l,k,arr);
+  validateTeamStrength(l, k, arr);
+}
+function validateTeamStrength(l, k, arr) {
+  let sum1 = 0;
+  let sum2 = 0;
+  for (let i = 0; i < l; i++) {
+    sum1 += arr[i];
+  }
+  for (let j = arr.length - 1; j >= l; j--) {
+    sum2 += arr[j];
+  }
+  if (Math.abs(sum1 - sum2) > k) {
+    console.log("Invalid");
+  } else {
+    console.log("Valid");
+  }
+}
+
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
