@@ -1,0 +1,34 @@
+function runProgram(input) {
+  let n = +input - 80;
+  var units;
+  if (n <= 150) {
+    units = n / 3;
+  }
+  if (n >= 150 && n <= 750) {
+    units = 50 + (n - 150) / 5;
+  }
+  if (n >= 750) {
+    units = 150 + (n - 650) / 10;
+  }
+  console.log(units);
+}
+if (process.env.USERNAME === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
