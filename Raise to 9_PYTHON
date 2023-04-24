@@ -1,0 +1,9 @@
+#define rasieTo9 function
+def raiseTo9(num):
+    return num ** 9
+
+def solve(num):
+                #Complete Code
+    getValue = raiseTo9(num)
+    print(getValue)
+    
