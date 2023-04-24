@@ -1,0 +1,13 @@
+#Define findDifference function
+import math
+def findDifference(a,b):
+    return a-b
+
+#Define absoluteValue function
+
+
+def solve(a,b):
+    get = abs(findDifference(a,b))
+    print(get)
+   
+ 
