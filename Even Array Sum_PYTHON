@@ -1,0 +1,15 @@
+#define checkEven function
+def checkEven(num):
+    if num%2==0:
+       return True
+    else:
+        return False
+def solve(num,given_list):
+                #Complete Code
+                #for loop 
+    for i in given_list:
+        sum=0
+    for i in given_list:
+        if checkEven(i):
+            sum+=i
+    print(sum)
