@@ -1,0 +1,10 @@
+#define producOfSix function
+def productOfSix(one,two,three,four,five,six):
+    return one*two*three*four*five*six
+
+def solve(one, two, three, four, five, six):
+  getProduct = productOfSix(one,two,three,four,five,six)
+  #complete the code.
+  print(getProduct)
+ 
+  
