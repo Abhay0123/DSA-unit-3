@@ -1,0 +1,8 @@
+#Define addNumbers function
+def addNumbers(a,b):
+    return a+b
+
+def solve(a,b):
+  #write Code
+    getSum = addNumbers(a,b)
+    print(getSum)
