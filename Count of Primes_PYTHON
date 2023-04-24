@@ -1,0 +1,21 @@
+#define checkPrime function
+def checkPrime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def solve(num):
+                #Complete Code
+    count=0
+    for i in range(0, num+1):
+        if checkPrime(i):
+           count=count+1
+   
+                
+               #for loop take i as a variable
+    getCheck = checkPrime(i)
+                #Complete Code
+    print(count)
