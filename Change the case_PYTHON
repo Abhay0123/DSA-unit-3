@@ -1,0 +1,21 @@
+#definge changeCase function
+def changeCase(string):
+    new_string = ""
+    for char in string:
+        if char.isupper():
+           new_string += char.lower()
+        else:
+            new_string += char.upper()
+        return new_string
+
+
+def solve(num,given_string):
+       #write code
+       #for loop
+    new_string = ""
+    for i in range(num):
+        getString = changeCase(given_string[i])
+        new_string+=getString
+               #complete the code
+    print(new_string)
+  
